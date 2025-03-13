@@ -1,8 +1,9 @@
 package com.mdotm.pets.controller;
 
-import com.mdotm.pets.dto.CreatePetInformationRequestDto;
-import com.mdotm.pets.dto.PetDto;
-import com.mdotm.pets.dto.UpdatePetInformationRequestDto;
+import com.mdotm.pets.controller.dto.CreatePetInformationRequestDto;
+import com.mdotm.pets.controller.dto.PetDto;
+import com.mdotm.pets.controller.dto.UpdatePetInformationRequestDto;
+import com.mdotm.pets.exception.handler.response.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,7 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.web.ErrorResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public interface PetOperationsController {
             }
     )
     @PostMapping
-    PetDto createPet(@RequestBody @Valid CreatePetInformationRequestDto createPetInformationRequestDto);
+    ResponseEntity<PetDto> createPet(@RequestBody @Valid CreatePetInformationRequestDto createPetInformationRequestDto);
 
     @Operation(
             summary = "Get a pet by ID",
@@ -53,7 +54,7 @@ public interface PetOperationsController {
             }
     )
     @GetMapping("/{id}")
-    PetDto getPetById(@PathVariable Long id);
+    ResponseEntity<PetDto> getPetById(@PathVariable Long id);
 
     @Operation(
             summary = "Get all pets",
@@ -67,19 +68,19 @@ public interface PetOperationsController {
             }
     )
     @GetMapping
-    List<PetDto> getAllPets(@Parameter(description = "Page number (zero-based index)", example = "0")
+    ResponseEntity<List<PetDto>> getAllPets(@Parameter(description = "Page number (zero-based index)", example = "0")
                             @RequestParam(defaultValue = "0") int page,
                             @Parameter(description = "Number of records per page", example = "10")
                             @RequestParam(defaultValue = "10") int size,
                             @Parameter(description = "Sorting criteria in the format `+field` or `-field`", example = "-age,+name")
                             @RequestParam(required = false) List<String> sort,
-                            @Parameter(description = "Filter by pet name (incl. partial filtering)")
+                            @Parameter(description = "Filter by pet name (incl. partial filtering, case agnostic)")
                             @RequestParam(required = false) String name,
                             @Parameter(description = "Filter by pet species (incl. partial filtering, case agnostic)", example = "cat")
                             @RequestParam(required = false) String species,
                             @Parameter(description = "Filter by pet age", example = "3")
                             @RequestParam(required = false) Integer age,
-                            @Parameter(description = "Filter by owner's name (incl. partial filtering)")
+                            @Parameter(description = "Filter by owner's name (incl. partial filtering, case agnostic)")
                             @RequestParam(required = false) String ownerName);
 
     @Operation(
@@ -100,23 +101,20 @@ public interface PetOperationsController {
             }
     )
     @PutMapping("/{id}")
-    PetDto updatePetById(@PathVariable Long id, @RequestBody @Valid UpdatePetInformationRequestDto updatePetInformationRequestDto);
+    ResponseEntity<PetDto> updatePetById(@PathVariable Long id, @RequestBody @Valid UpdatePetInformationRequestDto updatePetInformationRequestDto);
 
     @Operation(
             summary = "Delete a pet by ID",
             description = "Removes a pet from the system.",
             responses = {
                     @ApiResponse(responseCode = "204", description = "Pet deleted successfully"),
-                    @ApiResponse(responseCode = "404", description = "Pet not found",
-                            content = @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "500", description = "Generic server error occurred; operation can be retried later",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     @DeleteMapping("/{id}")
-    void deletePetById(@PathVariable Long id);
+    ResponseEntity<Void> deletePetById(@PathVariable Long id);
 
     @Operation(
             summary = "Partially update a pet by ID",
@@ -127,12 +125,14 @@ public interface PetOperationsController {
                     @ApiResponse(responseCode = "400", description = "Invalid update request",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ErrorResponse.class))),
-                    @ApiResponse(responseCode = "404", description = "Pet not found"),
+                    @ApiResponse(responseCode = "404", description = "Pet not found",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "500", description = "Generic server error occurred; operation can be retried later",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     @PatchMapping("/{id}")
-    PetDto patchPetById(@PathVariable Long id, @RequestBody Map<String, Object> updatedProperties);
+    ResponseEntity<PetDto> patchPetById(@PathVariable Long id, @RequestBody Map<String, Object> updatedProperties);
 }
