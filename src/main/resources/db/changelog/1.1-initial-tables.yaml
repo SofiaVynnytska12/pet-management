@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-pets-table
+      author: sofiia.vynnytska
+      changes:
+        - createTable:
+            tableName: pets
+            columns:
+              - column:
+                  name: pet_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: species
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: age
+                  type: INTEGER
+                  constraints:
+                    nullable: true
+              - column:
+                  name: ownerName
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
