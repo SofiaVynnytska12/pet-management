@@ -15,11 +15,20 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - postgres_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d pets_db" ]
+      interval: 10s
+      retries: 5
+      start_period: 20s
   pet-management:
     image: com.mdotm/pets-management:latest
     ports:
       - "8080:8080"
-    #environment: Override application properties with environment variables here if needed
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - postgres_network
 
 volumes:
   postgres_data:
