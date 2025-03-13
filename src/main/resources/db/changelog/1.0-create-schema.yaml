@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-pets-management-schema
+      author: sofiia.vynnytska
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS pets_management;

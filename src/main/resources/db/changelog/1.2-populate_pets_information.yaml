@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: populate-pets-information-1
+      author: sofiia.vynnytska
+      changes:
+        - insert:
+            tableName: pets
+            columns:
+              - column:
+                  name: name
+                  value: "Clara"
+              - column:
+                  name: species
+                  value: "Dog"
+              - column:
+                  name: age
+                  valueNumeric: 9
+              - column:
+                  name: ownerName
+                  value: "Eder"
+        - insert:
+            tableName: pets
+            columns:
+              - column:
+                  name: name
+                  value: "Mastrolindo"
+              - column:
+                  name: species
+                  value: "Fish"
+              - column:
+                  name: age
+                  valueNumeric: 5
+              - column:
+                  name: ownerName
+                  value: "Sofiia"
+        - insert:
+            tableName: pets
+            columns:
+              - column:
+                  name: name
+                  value: "Coccolino"
+              - column:
+                  name: species
+                  value: "Bear"
+              - column:
+                  name: age
+                  valueNumeric: 1
+              - column:
+                  name: ownerName
+                  value: "Patric"
+        - insert:
+            tableName: pets
+            columns:
+              - column:
+                  name: name
+                  value: "ChanteClair"
+              - column:
+                  name: species
+                  value: "Rooster"
+              - column:
+                  name: age
+                  valueNumeric: 6
+              - column:
+                  name: ownerName
+                  value: "Clarice"
+        - insert:
+            tableName: pets
+            columns:
+              - column:
+                  name: name
+                  value: "Kimura"
+              - column:
+                  name: species
+                  value: "Dog"
+              - column:
+                  name: age
+                  valueNumeric: 4
+              - column:
+                  name: ownerName
+                  value: "Eder"

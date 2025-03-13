@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/1.0-create-schema.yaml
+  - include:
+      file: db/changelog/1.1-initial-tables.yaml
+  - include:
+      file: db/changelog/1.2-populate_pets_information.yaml
