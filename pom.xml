@@ -41,7 +41,6 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${spring-openapi-starter.webmvc.ui.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
