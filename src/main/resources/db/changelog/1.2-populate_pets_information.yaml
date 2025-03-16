@@ -16,7 +16,7 @@ databaseChangeLog:
                   name: age
                   valueNumeric: 9
               - column:
-                  name: ownerName
+                  name: owner_name
                   value: "Eder"
         - insert:
             tableName: pets
@@ -31,7 +31,7 @@ databaseChangeLog:
                   name: age
                   valueNumeric: 5
               - column:
-                  name: ownerName
+                  name: owner_name
                   value: "Sofiia"
         - insert:
             tableName: pets
@@ -46,7 +46,7 @@ databaseChangeLog:
                   name: age
                   valueNumeric: 1
               - column:
-                  name: ownerName
+                  name: owner_name
                   value: "Patric"
         - insert:
             tableName: pets
@@ -61,7 +61,7 @@ databaseChangeLog:
                   name: age
                   valueNumeric: 6
               - column:
-                  name: ownerName
+                  name: owner_name
                   value: "Clarice"
         - insert:
             tableName: pets
@@ -76,5 +76,5 @@ databaseChangeLog:
                   name: age
                   valueNumeric: 4
               - column:
-                  name: ownerName
+                  name: owner_name
                   value: "Eder"

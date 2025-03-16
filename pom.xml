@@ -14,8 +14,6 @@
 	<description>Create REST Apis for pets management</description>
 
 	<properties>
-		<commons.validator.version>1.9.0</commons.validator.version>
-		<validation.api.version>2.0.1.Final</validation.api.version>
 		<javax-annotation.api.version>1.3.2</javax-annotation.api.version>
 		<spring-openapi-starter.webmvc.ui.version>2.8.4</spring-openapi-starter.webmvc.ui.version>
 		<exec-maven-plugin.version>3.5.0</exec-maven-plugin.version>
@@ -34,13 +32,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
 		<dependency>
@@ -50,26 +43,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-			<version>${javax-annotation.api.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>${validation.api.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-validator</groupId>
-			<artifactId>commons-validator</artifactId>
-			<version>${commons.validator.version}</version>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
 		</dependency>
 
 		<dependency>
